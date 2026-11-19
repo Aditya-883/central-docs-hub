@@ -1,0 +1,27 @@
+name: Pipeline 3 - Generate & Deploy Docs
+
+on:
+  repository_dispatch:
+    types: [json-data-updated] # Pipeline 1 & 2 se trigger hoga
+  workflow_dispatch:           # Manual test ke liye
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Central Docs Hub
+        uses: actions/checkout@v4
+
+      - name: Show Trigger Info
+        run: |
+          echo "Triggered by portal: ${{ github.event.client_payload.portal || 'manual' }}"
+          echo "Source: ${{ github.event.client_payload.source || 'manual' }}"
+          echo "Current files in data/inbox:"
+          find data/inbox -type f 2>/dev/null || echo "No files in data/inbox yet"
+
+      # --- Aage yahan Python AI MDX Generator chalega ---
+      # - name: Run AI Docs Generator
+      #   run: python scripts/generate_docs.py
+
+      # --- Aage yahan Docusaurus Build & Deploy chalega ---
