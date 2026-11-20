@@ -2,37 +2,37 @@
 id: "notifications"
 title: "Notifications - Asponte Technology Inc"
 sidebar_position: 2
-description: "View, filter, and manage system notifications and shared filter alerts."
+description: "View and manage account notifications and shared filters."
 ---
 
 ## Overview
-The Notifications page allows you to view and manage system alerts, updates, and shared filter notifications within your GOVCON360 account. Users can review incoming notices regarding shared saved filters, track unread items, and manage individual notifications.
+The Notifications page allows users to track system alerts, updates, and shared items across their account, such as new shared filters available in GOVCON360. Users can view unread and all notifications, filter their list, and perform individual notification actions. You can navigate back to your [Dashboard](./dashboard.mdx), manage your [User Profile](./users.mdx), or update your [Change Password](./reset-password.mdx) settings using the top navigation and profile menus.
 
 ## Screen Reference
 ![Page Screenshot](/img/client/02-notifications-screenshot.png)
 
 ## Page Features
-- **Notification Counters**: Displays the total count of notifications and unread items, allowing you to quickly gauge new activity since visiting your [Dashboard](./dashboard.mdx).
-- **Notification Filters**: Tab options allowing you to switch between viewing **All** notifications or specifically filter by **Unread** items.
-- **Notification Cards**: Individual alert items displaying timestamps, details (such as shared saved filters), and a **Notification actions** button to manage each entry.
-- **Pagination Controls**: Navigate across multiple pages of notification history using the pagination footer (e.g., **Page 1 of 3** and **Next ›**).
+- **Notification Filters**: Toggle between **All** and **Unread** views to manage your items.
+- **Notification Cards**: Each notification displays the update type (such as shared filters from team members), timestamps, and details.
+- **Notification Actions**: Use the action button on individual notification cards to manage specific alerts.
+- **Pagination**: Navigate across multi-page notifications using the page indicators and directional controls like **Next ›**.
 
 ## Step-by-Step Workflow
-1. Access the notifications list by clicking the notification icon displaying your unread count in the top navigation bar.
-2. Use the filter tabs at the top of the list to switch between **All** and **Unread** notifications.
-3. Review individual notifications, such as new shared filters from team members.
-4. Click the **Notification actions** button on any notification card to manage or update its status.
-5. Use the pagination controls at the bottom of the page (such as **Next ›**) to view older notifications.
+1. Access the notifications area from the top navigation bar.
+2. Click on the notification tabs (**All** or **Unread**) to filter the alerts list.
+3. Review individual notifications such as shared filters.
+4. Click the **Notification actions** button on any notification card to interact with or dismiss the item.
+5. Use **Next ›** to view additional notification pages if available.
 
 ## Form Fields Reference
 | Field Label | Type | Required | Validation / Description |
 |---|---|---|---|
-| token | hidden | No | Internal security token for form submission. |
-| govcon360-group-id | hidden | No | Internal identifier for your GOVCON360 account group. |
+| token | hidden | No | Internal security token for session verification. |
+| govcon360-group-id | hidden | No | Hidden identifier for group context. |
 
 ## Additional Information
-You can access your account settings, including updating your [User Profile](./users.mdx) or performing a [Change Password](./reset-password.mdx), using the profile dropdown menu in the header.
+The header displays your user initials and a dropdown counter showing the total count of current notifications. You can also quickly access main sections from your navigation menu, including Market Intel, Lead Prospector, Business Development, Teaming Partnerships, Proposals, Contracts, and Administration.
 
 :::tip
-Check your unread notifications regularly to stay up to date when colleagues share saved filters and account updates with you.
+Check your unread notifications regularly to stay up to date when colleagues share saved filters or important updates with your GOVCON360 account.
 :::
