@@ -1,0 +1,15 @@
+{
+  "frontend/admin/crawl-summary.json": "592bcbdfd8936fea90fd48b04979ec3eba4b7577f7d53d2977a0e6657f3d1057",
+  "frontend/client/crawl-summary.json": "9002b48cc0cb0a2155d67e8bc9b7c3e7c3e0e8b93db0780d5a7e8b513d87583d",
+  "frontend/client/pages/01-dashboard-asponte-technology-inc/page.json": "84454feef2f091744e174a574719f31bf0dd39e938b304a30766f08df182b9b6",
+  "frontend/client/pages/02-notifications/page.json": "740d3c050e495033d252a899778e713a23b9f2c85338a5b0b7ffed058c38905b",
+  "frontend/client/pages/03-users/page.json": "465b06e1edb1e4c09aae41c3908159c539085dcdf5d0cb7503ae8d8ba2a4c386",
+  "frontend/client/pages/04-reset-password/page.json": "76d550ab67e0af2da3ba83ce8a24defd06251e8619198503d9fb79714937373f",
+  "frontend/client/pages/05-dashboard/page.json": "e60f591b6729bd748e67b3f6156c24f8b2f395027c57191df80394b3bf27c26c",
+  "frontend/public/crawl-summary.json": "02263d1772f7db6d3e0b03d29b6504df77d6a3cf8083f3167a38401187fe1001",
+  "frontend/public/pages/01-home-govcon-360-public-site-liferay/page.json": "5adf1cf4bbd9b324967592910396149606200fbd06e17b900bd56aa231018520",
+  "frontend/public/pages/02-home/page.json": "ad3d7f7d38ad3fb36f25ef82af00ff30af6a3a79f5aacf5cb9f0a297dd7f349d",
+  "frontend/public/pages/03-solutions-business-developers/page.json": "62dc8edf8016cdad09c3b3bbdba88b4c566af3976653f31398b22c300e46e442",
+  "frontend/public/pages/04-features-market-intelligence/page.json": "f114cfc2e74562507d64c7801504fad9a35765b4dfa2d3cd26c09a9036f7b503",
+  "frontend/public/pages/05-pricing/page.json": "521280f5db3d36e1966d2f78e4e5e6c6c544788fb9ded80901eeb69006b262a1"
+}
