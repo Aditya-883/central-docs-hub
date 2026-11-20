@@ -1,0 +1,12 @@
+{
+  "frontend::client::dashboard": "59722c7fd34486584039d2667fbe070294f4c5580384905616baa8770e279048",
+  "frontend::client::dashboard-asponte-technology-inc": "7b83e1f8327d53f12cdb12d4bdbc13ae8ad3988836f9ea54afd0f5caf4ee954d",
+  "frontend::client::notifications": "8a099cfa4110dc8b23efd2eb234217f32a8f25919e2e4ea0ac0467db458f6892",
+  "frontend::client::reset-password": "9b00cc0141afc63744f430caab6208335bc3751838e3f6afcdb35d919e629630",
+  "frontend::client::users": "c1594a97877d0382469670bebcfd4d4610770468ca1586285f3b62c7f41b0dbc",
+  "frontend::public::features-market-intelligence": "6302311f6e78236c58371aa2b22f2e61ca12cdbe69217a0b9a0a3584906a02d0",
+  "frontend::public::home": "9b6dffd0eacf0edffd9fadb4ab9f854978f1ef7e987a843919e51e211f205f22",
+  "frontend::public::home-govcon-360-public-site-liferay": "44559acd0d561659c742705956331e5f1a6a2d276883ffd3049dbea90eb0e19d",
+  "frontend::public::pricing": "a8886dcafd892811aac7cea051f4514c8a531f97c232fa961c08a766345047da",
+  "frontend::public::solutions-business-developers": "77300b7b529c5848d79ae6d8e790d54aa9f88519027bfdb41c318092ce058edc"
+}
