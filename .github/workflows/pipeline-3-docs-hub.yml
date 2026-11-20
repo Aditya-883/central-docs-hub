@@ -1,0 +1,73 @@
+name: Pipeline 3 - Central Docs Hub
+
+on:
+  repository_dispatch:
+    types: [json-data-updated]
+  workflow_dispatch:
+    inputs:
+      portal:
+        description: "Portal folder name under data/inbox/"
+        required: true
+        default: "portal-1"
+
+permissions:
+  contents: write
+
+jobs:
+  process-docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout Central Docs Hub
+        uses: actions/checkout@v4
+
+      - name: Set Target Portal
+        id: meta
+        run: |
+          PORTAL="${{ github.event.client_payload.portal || inputs.portal || 'portal-1' }}"
+          echo "portal=$PORTAL" >> $GITHUB_OUTPUT
+          echo "Processing portal: $PORTAL"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Detect JSON Changes (SHA-256)
+        id: detect
+        run: |
+          python scripts/detect_changes.py --portal "${{ steps.meta.outputs.portal }}"
+
+      - name: Run AI Documentation Generator
+        if: steps.detect.outputs.has_changes == 'true'
+        env:
+          PORTAL: ${{ steps.meta.outputs.portal }}
+          CHANGED_FILES: ${{ steps.detect.outputs.changed_files }}
+          # Uncomment and add your secret when plugging in the AI script:
+          # GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          echo "JSON changes detected for $PORTAL: $CHANGED_FILES"
+          echo "Running AI MDX generator..."
+          # Plug in the AI team's script here, e.g.:
+          # pip install -r requirements.txt
+          # python scripts/generate_mdx.py --portal "$PORTAL"
+
+      - name: Update Hash State
+        if: steps.detect.outputs.has_changes == 'true'
+        run: |
+          python scripts/detect_changes.py --portal "${{ steps.meta.outputs.portal }}" --update
+
+      - name: Commit & Push Generated Docs and State
+        if: steps.detect.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/state docs/ 2>/dev/null || git add data/state
+
+          if git diff --staged --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "docs(${{ steps.meta.outputs.portal }}): update generated docs and JSON hashes"
+            git push
+          fi
