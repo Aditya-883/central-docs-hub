@@ -27,37 +27,29 @@ jobs:
           python-version: "3.11"
 
       - name: Install AI Script Dependencies
-        run: |
-          if [ -f scripts/mdx-generator/requirements.txt ]; then
-            pip install -r scripts/mdx-generator/requirements.txt
-          else
-            echo "No requirements.txt found in scripts/mdx-generator/, skipping."
-          fi
+        working-directory: scripts
+        run: pip install -r requirements.txt
 
-      - name: Ensure Docusaurus Output Folders Exist
+      - name: Ensure Output Folders Exist
         run: |
           mkdir -p docusaurus/docs
           mkdir -p docusaurus/static/img
 
       - name: Run AI MDX Generator
+        working-directory: scripts
         env:
-          # Match the secret name to whatever API key the AI team's script expects
+          # Script mein jo exact env variable name hai wahi yahan aur GitHub Secrets mein rakhna
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          echo "Running AI MDX generator..."
-          # Replace with the AI team's exact script filename and arguments, e.g.:
-          # python scripts/mdx-generator/main.py \
-          #   --frontend frontend \
-          #   --backend backend \
-          #   --output docusaurus/docs
+        run: python compile_mdx.py
 
       - name: Commit & Push Generated Docs
         run: |
+          rm -rf scripts/__pycache__
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Stage generated MDX docs, images, and any hash/state files updated by the AI script
-          git add docusaurus/docs docusaurus/static/img scripts/mdx-generator
+          git add docusaurus scripts
+          [ -d docs ] && git add docs
 
           if git diff --staged --quiet; then
             echo "No doc changes to commit."
