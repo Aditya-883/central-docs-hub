@@ -1,40 +1,68 @@
 name: Pipeline 3 - Central Docs Hub
+
 on:
- repository_dispatch:
-   types: [json-data-updated]
- workflow_dispatch: # Manual test run ke liye
+  repository_dispatch:
+    types: [json-data-updated]
+  workflow_dispatch:
+
 permissions:
- contents: write
+  contents: write
+
+concurrency:
+  group: pipeline-3-docs
+  cancel-in-progress: false
+
 jobs:
- generate-mdx:
-   runs-on: ubuntu-latest
-   timeout-minutes: 20
-   steps:
-     - name: Checkout Central Docs Hub
-       uses: actions/checkout@v4
-     - name: Set up Python
-       uses: actions/setup-python@v5
-       with:
-         python-version: '3.11'
-         cache: 'pip'
-         cache-dependency-path: 'scripts/mdx-generator/requirements.txt'
-     - name: Install AI Script Dependencies
-       run: |
-         python -m pip install --upgrade pip
-         pip install -r scripts/mdx-generator/requirements.txt
-     - name: Run MDX Generator
-       env:
-         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-       run: |
-         python scripts/mdx-generator/Mdx_generator.py
-     - name: Commit and Push Generated MDX & Hashes
-       run: |
-         git config user.name "github-actions[bot]"
-         git config user.email "github-actions[bot]@users.noreply.github.com"
-         git add -A
-         if git diff --staged --quiet; then
-           echo "No MDX or hash changes to commit."
-         else
-           git commit -m "docs: auto-generate MDX from ${{ github.event.client_payload.source || 'manual-run' }} [skip ci]"
-           git push
-         fi
+  generate-docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout Central Docs Hub
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install AI Script Dependencies
+        run: |
+          if [ -f scripts/mdx-generator/requirements.txt ]; then
+            pip install -r scripts/mdx-generator/requirements.txt
+          else
+            echo "No requirements.txt found in scripts/mdx-generator/, skipping."
+          fi
+
+      - name: Ensure Docusaurus Output Folders Exist
+        run: |
+          mkdir -p docusaurus/docs
+          mkdir -p docusaurus/static/img
+
+      - name: Run AI MDX Generator
+        env:
+          # Match the secret name to whatever API key the AI team's script expects
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          echo "Running AI MDX generator..."
+          # Replace with the AI team's exact script filename and arguments, e.g.:
+          # python scripts/mdx-generator/main.py \
+          #   --frontend frontend \
+          #   --backend backend \
+          #   --output docusaurus/docs
+
+      - name: Commit & Push Generated Docs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stage generated MDX docs, images, and any hash/state files updated by the AI script
+          git add docusaurus/docs docusaurus/static/img scripts/mdx-generator
+
+          if git diff --staged --quiet; then
+            echo "No doc changes to commit."
+          else
+            git commit -m "docs: auto-generate updated MDX files"
+            git pull --rebase origin main
+            git push
+          fi
