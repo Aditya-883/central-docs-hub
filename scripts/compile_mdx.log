@@ -217,3 +217,43 @@
 2026-11-20 12:16:26 | INFO    | HTTP Request: POST https://generativelanguage.googleapis.com/v1/models/gemini-3.5-flash-lite:generateContent "HTTP/1.1 200 OK"
 2026-11-20 12:16:26 | INFO    | Generated: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/public/user-guide/pricing.mdx
 2026-11-20 12:16:26 | INFO    | Done | generated: 9 | unchanged: 1 | failed: 0 | tokens: {'total_calls': 9, 'prompt_tokens': 54452, 'completion_tokens': 5098, 'total_tokens': 59550, 'failed_attempts': 0}
+2026-11-23 12:03:19 | INFO    | Auto-detected project root: /home/runner/work/central-docs-hub/central-docs-hub
+2026-11-23 12:03:19 | INFO    | Model: gemini-3.5-flash-lite | docs: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs | static: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/static
+2026-11-23 12:03:19 | INFO    | Auto-discovered frontend portal: admin (/home/runner/work/central-docs-hub/central-docs-hub/frontend/admin)
+2026-11-23 12:03:19 | WARNING | No JSON files found in frontend portal folder: /home/runner/work/central-docs-hub/central-docs-hub/frontend/admin
+2026-11-23 12:03:19 | INFO    | Auto-discovered frontend portal: client (/home/runner/work/central-docs-hub/central-docs-hub/frontend/client)
+2026-11-23 12:03:19 | INFO    | Found 5 JSON file(s) in /home/runner/work/central-docs-hub/central-docs-hub/frontend/client
+2026-11-23 12:03:19 | INFO    | Mapped 5 internal doc route(s) for inline cross-linking.
+2026-11-23 12:03:19 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/client/pages/01-dashboard-asponte-technology-inc/page.json
+2026-11-23 12:03:19 | WARNING | Unrecognised page layout in 01-dashboard-asponte-technology-inc: sending its raw JSON to the model.
+2026-11-23 12:03:19 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/client/user-guide/dashboard-asponte-technology-inc.mdx
+2026-11-23 12:03:19 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/client/pages/02-notifications/page.json
+2026-11-23 12:03:19 | WARNING | Unrecognised page layout in 02-notifications: sending its raw JSON to the model.
+2026-11-23 12:03:19 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/client/user-guide/notifications.mdx
+2026-11-23 12:03:19 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/client/pages/03-users/page.json
+2026-11-23 12:03:19 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/client/user-guide/users.mdx
+2026-11-23 12:03:19 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/client/pages/04-reset-password/page.json
+2026-11-23 12:03:19 | WARNING | Unrecognised page layout in 04-reset-password: sending its raw JSON to the model.
+2026-11-23 12:03:19 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/client/user-guide/reset-password.mdx
+2026-11-23 12:03:19 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/client/pages/05-dashboard/page.json
+2026-11-23 12:03:19 | WARNING | Unrecognised page layout in 05-dashboard: sending its raw JSON to the model.
+2026-11-23 12:03:19 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/client/user-guide/dashboard.mdx
+2026-11-23 12:03:19 | INFO    | Auto-discovered frontend portal: public (/home/runner/work/central-docs-hub/central-docs-hub/frontend/public)
+2026-11-23 12:03:19 | INFO    | Found 5 JSON file(s) in /home/runner/work/central-docs-hub/central-docs-hub/frontend/public
+2026-11-23 12:03:20 | INFO    | Mapped 5 internal doc route(s) for inline cross-linking.
+2026-11-23 12:03:20 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/public/pages/01-home-govcon-360-public-site-liferay/page.json
+2026-11-23 12:03:20 | WARNING | Unrecognised page layout in 01-home-govcon-360-public-site-liferay: sending its raw JSON to the model.
+2026-11-23 12:03:20 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/public/user-guide/home-govcon-360-public-site-liferay.mdx
+2026-11-23 12:03:20 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/public/pages/02-home/page.json
+2026-11-23 12:03:20 | WARNING | Unrecognised page layout in 02-home: sending its raw JSON to the model.
+2026-11-23 12:03:20 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/public/user-guide/home.mdx
+2026-11-23 12:03:20 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/public/pages/03-solutions-business-developers/page.json
+2026-11-23 12:03:20 | WARNING | Unrecognised page layout in 03-solutions-business-developers: sending its raw JSON to the model.
+2026-11-23 12:03:20 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/public/user-guide/solutions-business-developers.mdx
+2026-11-23 12:03:20 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/public/pages/04-features-market-intelligence/page.json
+2026-11-23 12:03:20 | WARNING | Unrecognised page layout in 04-features-market-intelligence: sending its raw JSON to the model.
+2026-11-23 12:03:20 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/public/user-guide/features-market-intelligence.mdx
+2026-11-23 12:03:20 | INFO    | Reading crawl JSON: /home/runner/work/central-docs-hub/central-docs-hub/frontend/public/pages/05-pricing/page.json
+2026-11-23 12:03:20 | WARNING | Unrecognised page layout in 05-pricing: sending its raw JSON to the model.
+2026-11-23 12:03:20 | INFO    | Unchanged, skipped: /home/runner/work/central-docs-hub/central-docs-hub/docusaurus/docs/public/user-guide/pricing.mdx
+2026-11-23 12:03:20 | INFO    | Done | generated: 0 | unchanged: 10 | failed: 0 | tokens: {'total_calls': 0, 'prompt_tokens': 0, 'completion_tokens': 0, 'total_tokens': 0, 'failed_attempts': 0}
