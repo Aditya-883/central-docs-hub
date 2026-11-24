@@ -8,7 +8,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   future: {
-    v4: true,
+    v4: true, // Enables @docusaurus/faster (Rspack/SWC)
   },
 
   markdown: {
@@ -35,7 +35,7 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: false, // Disabled so the 3 separate instances below handle routing
+        docs: false, // Disabled so the 3 isolated portal plugins below handle routing
         blog: false,
         theme: {
           customCss: './src/css/custom.css',
@@ -49,7 +49,7 @@ const config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'user',
-        path: 'docs/public', // Change to 'docs/user' if compile_mdx.py outputs there
+        path: 'docs/public', // Verify if compile_mdx.py outputs to 'docs/public' or 'docs/user-documentation'
         routeBasePath: 'docs/user',
         editUrl:
           'https://github.com/harshh122/central-docs-hub/tree/main/docusaurus/',
@@ -59,7 +59,7 @@ const config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'client',
-        path: 'docs/client',
+        path: 'docs/client-documentation',
         routeBasePath: 'docs/client',
         editUrl:
           'https://github.com/harshh122/central-docs-hub/tree/main/docusaurus/',
@@ -69,7 +69,7 @@ const config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'admin',
-        path: 'docs/admin',
+        path: 'docs/admin-documentation',
         routeBasePath: 'docs/admin',
         editUrl:
           'https://github.com/harshh122/central-docs-hub/tree/main/docusaurus/',
