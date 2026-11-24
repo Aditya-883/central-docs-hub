@@ -1,0 +1,40 @@
+---
+id: "dispatchrest"
+title: "DispatchRest"
+sidebar_position: 15
+description: "Mock API reference."
+---
+
+| Property | Value |
+| :--- | :--- |
+| Endpoints | 5 |
+| Base path | `https://platform.nlproducts.net/o` |
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Caller] --> B[API Service] --> C[(Database)]
+```
+
+## Endpoints
+
+### GET `/dispatch-rest/v1.0/dispatch-triggers`
+
+[DispatchTrigger] DispatchRest.v1.0.getDispatchTriggersPage
+
+### POST `/dispatch-rest/v1.0/dispatch-triggers`
+
+[DispatchTrigger] DispatchRest.v1.0.postDispatchTrigger
+
+### POST `/dispatch-rest/v1.0/dispatch-triggers/batch`
+
+[DispatchTrigger] DispatchRest.v1.0.postDispatchTriggerBatch
+
+### POST `/dispatch-rest/v1.0/dispatch-triggers/export-batch`
+
+[DispatchTrigger] DispatchRest.v1.0.postDispatchTriggersPageExportBatch
+
+### POST `/dispatch-rest/v1.0/dispatch-triggers/{dispatchTriggerId}/run`
+
+[DispatchTrigger] DispatchRest.v1.0.postDispatchTriggerRun

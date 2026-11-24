@@ -1,0 +1,32 @@
+---
+id: "nlvirtualassistant"
+title: "NlVirtualAssistant"
+sidebar_position: 217
+description: "Mock API reference."
+---
+
+| Property | Value |
+| :--- | :--- |
+| Endpoints | 3 |
+| Base path | `https://platform.nlproducts.net/o` |
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Caller] --> B[API Service] --> C[(Database)]
+```
+
+## Endpoints
+
+### PUT `/nl-virtual-assistant/v1.0/api/sites/{siteId}/global-js`
+
+[GlobalJS] NlVirtualAssistant.v1.0.putGlobalJSForSite
+
+### PUT `/nl-virtual-assistant/v1.0/api/sites/{siteId}/site-pages/{layoutId}/global-js`
+
+[GlobalJS] NlVirtualAssistant.v1.0.putGlobalJSForPage
+
+### POST `/nl-virtual-assistant/v1.0/api/sites/{siteId}/site-pages`
+
+[Pages] NlVirtualAssistant.v1.0.postCreateWidgetPage

@@ -1,0 +1,70 @@
+---
+id: "headlessadminuser-part-3"
+title: "HeadlessAdminUser (Part 3 of 20)"
+sidebar_position: 40
+description: "Mock API reference."
+---
+
+Continuation of [headlessadminuser](./headlessadminuser.mdx) (Part 3 of 20 — 15 endpoints).
+
+## Endpoints
+
+### GET `/headless-admin-user/v1.0/organizations/by-external-reference-code/{externalReferenceCode}/accounts`
+
+[Account] HeadlessAdminUser.v1.0.getOrganizationByExternalReferenceCodeAccountsPage
+
+### POST `/headless-admin-user/v1.0/organizations/by-external-reference-code/{externalReferenceCode}/accounts`
+
+[Account] HeadlessAdminUser.v1.0.postOrganizationByExternalReferenceCodeAccounts
+
+### DELETE `/headless-admin-user/v1.0/organizations/by-external-reference-code/{organizationExternalReferenceCode}/accounts/by-external-reference-code`
+
+[Account] HeadlessAdminUser.v1.0.deleteOrganizationByExternalReferenceCodeOrganizationExternalReferenceCodeAccountByExternalReferenceCode
+
+### GET `/headless-admin-user/v1.0/organizations/by-external-reference-code/{organizationExternalReferenceCode}/accounts/by-external-reference-code`
+
+[Account] HeadlessAdminUser.v1.0.getOrganizationByExternalReferenceCodeOrganizationExternalReferenceCodeAccountsByExternalReferenceCodePage
+
+### POST `/headless-admin-user/v1.0/organizations/by-external-reference-code/{organizationExternalReferenceCode}/accounts/by-external-reference-code`
+
+[Account] HeadlessAdminUser.v1.0.postOrganizationByExternalReferenceCodeOrganizationExternalReferenceCodeAccountByExternalReferenceCode
+
+### PATCH `/headless-admin-user/v1.0/organizations/move-accounts/{sourceOrganizationId}/{targetOrganizationId}`
+
+[Account] HeadlessAdminUser.v1.0.patchOrganizationMoveAccounts
+
+### PATCH `/headless-admin-user/v1.0/organizations/move-accounts/{sourceOrganizationId}/{targetOrganizationId}/by-external-reference-code`
+
+[Account] HeadlessAdminUser.v1.0.patchOrganizationMoveAccountsByExternalReferenceCode
+
+### DELETE `/headless-admin-user/v1.0/organizations/{organizationId}/accounts`
+
+[Account] HeadlessAdminUser.v1.0.deleteOrganizationAccounts
+
+### GET `/headless-admin-user/v1.0/organizations/{organizationId}/accounts`
+
+[Account] HeadlessAdminUser.v1.0.getOrganizationAccountsPage
+
+### POST `/headless-admin-user/v1.0/organizations/{organizationId}/accounts`
+
+[Account] HeadlessAdminUser.v1.0.postOrganizationAccounts
+
+### DELETE `/headless-admin-user/v1.0/organizations/{organizationId}/accounts/by-external-reference-code`
+
+[Account] HeadlessAdminUser.v1.0.deleteOrganizationAccountsByExternalReferenceCode
+
+### POST `/headless-admin-user/v1.0/organizations/{organizationId}/accounts/by-external-reference-code`
+
+[Account] HeadlessAdminUser.v1.0.postOrganizationAccountsByExternalReferenceCode
+
+### POST `/headless-admin-user/v1.0/organizations/{organizationId}/accounts/export-batch`
+
+[Account] HeadlessAdminUser.v1.0.postOrganizationAccountsPageExportBatch
+
+### GET `/headless-admin-user/v1.0/account-groups`
+
+[AccountGroup] HeadlessAdminUser.v1.0.getAccountGroupsPage
+
+### POST `/headless-admin-user/v1.0/account-groups`
+
+[AccountGroup] HeadlessAdminUser.v1.0.postAccountGroup

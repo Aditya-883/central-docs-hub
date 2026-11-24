@@ -1,0 +1,70 @@
+---
+id: "changetrackingrest-part-2"
+title: "ChangeTrackingRest (Part 2 of 3)"
+sidebar_position: 7
+description: "Mock API reference."
+---
+
+Continuation of [changetrackingrest](./changetrackingrest.mdx) (Part 2 of 3 — 15 endpoints).
+
+## Endpoints
+
+### DELETE `/change-tracking-rest/v1.0/ct-collections/{ctCollectionId}/batch`
+
+[CTCollection] ChangeTrackingRest.v1.0.deleteCTCollectionBatch
+
+### PUT `/change-tracking-rest/v1.0/ct-collections/{ctCollectionId}/batch`
+
+[CTCollection] ChangeTrackingRest.v1.0.putCTCollectionBatch
+
+### POST `/change-tracking-rest/v1.0/ct-collections/{ctCollectionId}/checkout`
+
+[CTCollection] ChangeTrackingRest.v1.0.postCTCollectionCheckout
+
+### POST `/change-tracking-rest/v1.0/ct-collections/{ctCollectionId}/publish`
+
+[CTCollection] ChangeTrackingRest.v1.0.postCTCollectionPublish
+
+### POST `/change-tracking-rest/v1.0/ct-collections/{ctCollectionId}/schedule-publish`
+
+[CTCollection] ChangeTrackingRest.v1.0.postCTCollectionSchedulePublish
+
+### GET `/change-tracking-rest/v1.0/ct-collections/{ctCollectionId}/ct-entries`
+
+[CTEntry] ChangeTrackingRest.v1.0.getCtCollectionCTEntriesPage
+
+### GET `/change-tracking-rest/v1.0/ct-collections/{ctCollectionId}/ct-entries/by-model-class-name-id/{modelClassNameId}/by-model-class-pk/{modelClassPK}`
+
+[CTEntry] ChangeTrackingRest.v1.0.getCtCollectionCTEntryByModelClassNameByModelClassPkModelClassPK
+
+### GET `/change-tracking-rest/v1.0/ct-entries/history`
+
+[CTEntry] ChangeTrackingRest.v1.0.getCTEntriesHistoryPage
+
+### GET `/change-tracking-rest/v1.0/ct-entries/{ctEntryId}`
+
+[CTEntry] ChangeTrackingRest.v1.0.getCTEntry
+
+### GET `/change-tracking-rest/v1.0/ct-processes`
+
+[CTProcess] ChangeTrackingRest.v1.0.getCTProcessesPage
+
+### POST `/change-tracking-rest/v1.0/ct-processes/export-batch`
+
+[CTProcess] ChangeTrackingRest.v1.0.postCTProcessesPageExportBatch
+
+### DELETE `/change-tracking-rest/v1.0/ct-processes/{ctProcessId}`
+
+[CTProcess] ChangeTrackingRest.v1.0.deleteCTProcess
+
+### GET `/change-tracking-rest/v1.0/ct-processes/{ctProcessId}`
+
+[CTProcess] ChangeTrackingRest.v1.0.getCTProcess
+
+### DELETE `/change-tracking-rest/v1.0/ct-processes/{ctProcessId}/batch`
+
+[CTProcess] ChangeTrackingRest.v1.0.deleteCTProcessBatch
+
+### POST `/change-tracking-rest/v1.0/ct-processes/{ctProcessId}/revert`
+
+[CTProcess] ChangeTrackingRest.v1.0.postCTProcessRevert

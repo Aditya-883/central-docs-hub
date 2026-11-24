@@ -1,0 +1,70 @@
+---
+id: "headlessdelivery-part-19"
+title: "HeadlessDelivery (Part 19 of 34)"
+sidebar_position: 170
+description: "Mock API reference."
+---
+
+Continuation of [headlessdelivery](./headlessdelivery.mdx) (Part 19 of 34 — 15 endpoints).
+
+## Endpoints
+
+### GET `/headless-delivery/v1.0/message-board-attachments/{messageBoardAttachmentId}`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.getMessageBoardAttachment
+
+### GET `/headless-delivery/v1.0/message-board-messages/{messageBoardMessageId}/message-board-attachments`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.getMessageBoardMessageMessageBoardAttachmentsPage
+
+### POST `/headless-delivery/v1.0/message-board-messages/{messageBoardMessageId}/message-board-attachments`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.postMessageBoardMessageMessageBoardAttachment
+
+### POST `/headless-delivery/v1.0/message-board-messages/{messageBoardMessageId}/message-board-attachments/batch`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.postMessageBoardMessageMessageBoardAttachmentBatch
+
+### POST `/headless-delivery/v1.0/message-board-messages/{messageBoardMessageId}/message-board-attachments/export-batch`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.postMessageBoardMessageMessageBoardAttachmentsPageExportBatch
+
+### GET `/headless-delivery/v1.0/message-board-threads/{messageBoardThreadId}/message-board-attachments`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.getMessageBoardThreadMessageBoardAttachmentsPage
+
+### POST `/headless-delivery/v1.0/message-board-threads/{messageBoardThreadId}/message-board-attachments`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.postMessageBoardThreadMessageBoardAttachment
+
+### POST `/headless-delivery/v1.0/message-board-threads/{messageBoardThreadId}/message-board-attachments/batch`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.postMessageBoardThreadMessageBoardAttachmentBatch
+
+### POST `/headless-delivery/v1.0/message-board-threads/{messageBoardThreadId}/message-board-attachments/export-batch`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.postMessageBoardThreadMessageBoardAttachmentsPageExportBatch
+
+### DELETE `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/by-external-reference-code/{messageBoardMessageExternalReferenceCode}/message-board-attachments/by-external-reference-code/{externalReferenceCode}`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.deleteSiteMessageBoardMessageByExternalReferenceCodeMessageBoardMessageExternalReferenceCodeMessageBoardAttachmentByExternalReferenceCode
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/by-external-reference-code/{messageBoardMessageExternalReferenceCode}/message-board-attachments/by-external-reference-code/{externalReferenceCode}`
+
+[MessageBoardAttachment] HeadlessDelivery.v1.0.getSiteMessageBoardMessageByExternalReferenceCodeMessageBoardMessageExternalReferenceCodeMessageBoardAttachmentByExternalReferenceCode
+
+### DELETE `/headless-delivery/v1.0/message-board-messages/batch`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.deleteMessageBoardMessageBatch
+
+### PUT `/headless-delivery/v1.0/message-board-messages/batch`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.putMessageBoardMessageBatch
+
+### DELETE `/headless-delivery/v1.0/message-board-messages/{messageBoardMessageId}`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.deleteMessageBoardMessage
+
+### GET `/headless-delivery/v1.0/message-board-messages/{messageBoardMessageId}`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.getMessageBoardMessage

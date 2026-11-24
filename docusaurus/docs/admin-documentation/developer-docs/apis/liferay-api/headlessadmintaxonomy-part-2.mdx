@@ -1,0 +1,70 @@
+---
+id: "headlessadmintaxonomy-part-2"
+title: "HeadlessAdminTaxonomy (Part 2 of 5)"
+sidebar_position: 34
+description: "Mock API reference."
+---
+
+Continuation of [headlessadmintaxonomy](./headlessadmintaxonomy.mdx) (Part 2 of 5 — 15 endpoints).
+
+## Endpoints
+
+### PUT `/headless-admin-taxonomy/v1.0/keywords/{keywordId}/subscribe`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.putKeywordSubscribe
+
+### PUT `/headless-admin-taxonomy/v1.0/keywords/{keywordId}/unsubscribe`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.putKeywordUnsubscribe
+
+### GET `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.getSiteKeywordsPage
+
+### POST `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.postSiteKeyword
+
+### POST `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords/batch`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.postSiteKeywordBatch
+
+### DELETE `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords/by-external-reference-code/{externalReferenceCode}`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.deleteSiteKeywordByExternalReferenceCode
+
+### GET `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords/by-external-reference-code/{externalReferenceCode}`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.getSiteKeywordByExternalReferenceCode
+
+### PUT `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords/by-external-reference-code/{externalReferenceCode}`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.putSiteKeywordByExternalReferenceCode
+
+### POST `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords/export-batch`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.postSiteKeywordsPageExportBatch
+
+### GET `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords/permissions`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.getSiteKeywordPermissionsPage
+
+### PUT `/headless-admin-taxonomy/v1.0/sites/{siteId}/keywords/permissions`
+
+[Keyword] HeadlessAdminTaxonomy.v1.0.putSiteKeywordPermissionsPage
+
+### DELETE `/headless-admin-taxonomy/v1.0/taxonomy-categories/batch`
+
+[TaxonomyCategory] HeadlessAdminTaxonomy.v1.0.deleteTaxonomyCategoryBatch
+
+### PUT `/headless-admin-taxonomy/v1.0/taxonomy-categories/batch`
+
+[TaxonomyCategory] HeadlessAdminTaxonomy.v1.0.putTaxonomyCategoryBatch
+
+### GET `/headless-admin-taxonomy/v1.0/taxonomy-categories/ranked`
+
+[TaxonomyCategory] HeadlessAdminTaxonomy.v1.0.getTaxonomyCategoriesRankedPage
+
+### GET `/headless-admin-taxonomy/v1.0/taxonomy-categories/{parentTaxonomyCategoryId}/taxonomy-categories`
+
+[TaxonomyCategory] HeadlessAdminTaxonomy.v1.0.getTaxonomyCategoryTaxonomyCategoriesPage

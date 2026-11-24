@@ -1,0 +1,70 @@
+---
+id: "headlessdelivery-part-21"
+title: "HeadlessDelivery (Part 21 of 34)"
+sidebar_position: 172
+description: "Mock API reference."
+---
+
+Continuation of [headlessdelivery](./headlessdelivery.mdx) (Part 21 of 34 — 15 endpoints).
+
+## Endpoints
+
+### POST `/headless-delivery/v1.0/message-board-threads/{messageBoardThreadId}/message-board-messages`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.postMessageBoardThreadMessageBoardMessage
+
+### POST `/headless-delivery/v1.0/message-board-threads/{messageBoardThreadId}/message-board-messages/batch`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.postMessageBoardThreadMessageBoardMessageBatch
+
+### POST `/headless-delivery/v1.0/message-board-threads/{messageBoardThreadId}/message-board-messages/export-batch`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.postMessageBoardThreadMessageBoardMessagesPageExportBatch
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/message-board-messages`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.getSiteMessageBoardMessagesPage
+
+### DELETE `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/by-external-reference-code/{externalReferenceCode}`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.deleteSiteMessageBoardMessageByExternalReferenceCode
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/by-external-reference-code/{externalReferenceCode}`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.getSiteMessageBoardMessageByExternalReferenceCode
+
+### PUT `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/by-external-reference-code/{externalReferenceCode}`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.putSiteMessageBoardMessageByExternalReferenceCode
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/by-friendly-url-path/{friendlyUrlPath}`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.getSiteMessageBoardMessageByFriendlyUrlPath
+
+### POST `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/export-batch`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.postSiteMessageBoardMessagesPageExportBatch
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/permissions`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.getSiteMessageBoardMessagePermissionsPage
+
+### PUT `/headless-delivery/v1.0/sites/{siteId}/message-board-messages/permissions`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.putSiteMessageBoardMessagePermissionsPage
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/{userId}/message-board-messages/activity`
+
+[MessageBoardMessage] HeadlessDelivery.v1.0.getSiteUserMessageBoardMessagesActivityPage
+
+### DELETE `/headless-delivery/v1.0/message-board-sections/batch`
+
+[MessageBoardSection] HeadlessDelivery.v1.0.deleteMessageBoardSectionBatch
+
+### PUT `/headless-delivery/v1.0/message-board-sections/batch`
+
+[MessageBoardSection] HeadlessDelivery.v1.0.putMessageBoardSectionBatch
+
+### DELETE `/headless-delivery/v1.0/message-board-sections/{messageBoardSectionId}`
+
+[MessageBoardSection] HeadlessDelivery.v1.0.deleteMessageBoardSection

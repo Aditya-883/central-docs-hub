@@ -1,0 +1,70 @@
+---
+id: "headlessadminuser-part-9"
+title: "HeadlessAdminUser (Part 9 of 20)"
+sidebar_position: 46
+description: "Mock API reference."
+---
+
+Continuation of [headlessadminuser](./headlessadminuser.mdx) (Part 9 of 20 — 15 endpoints).
+
+## Endpoints
+
+### DELETE `/headless-admin-user/v1.0/organizations/{organizationId}`
+
+[Organization] HeadlessAdminUser.v1.0.deleteOrganization
+
+### GET `/headless-admin-user/v1.0/organizations/{organizationId}`
+
+[Organization] HeadlessAdminUser.v1.0.getOrganization
+
+### PATCH `/headless-admin-user/v1.0/organizations/{organizationId}`
+
+[Organization] HeadlessAdminUser.v1.0.patchOrganization
+
+### PUT `/headless-admin-user/v1.0/organizations/{organizationId}`
+
+[Organization] HeadlessAdminUser.v1.0.putOrganization
+
+### GET `/headless-admin-user/v1.0/organizations/{organizationId}/child-organizations`
+
+[Organization] HeadlessAdminUser.v1.0.getOrganizationChildOrganizationsPage
+
+### DELETE `/headless-admin-user/v1.0/organizations/{organizationId}/user-accounts/by-email-address`
+
+[Organization] HeadlessAdminUser.v1.0.deleteUserAccountsByEmailAddress
+
+### POST `/headless-admin-user/v1.0/organizations/{organizationId}/user-accounts/by-email-address`
+
+[Organization] HeadlessAdminUser.v1.0.postUserAccountsByEmailAddress
+
+### DELETE `/headless-admin-user/v1.0/organizations/{organizationId}/user-accounts/by-email-address/{emailAddress}`
+
+[Organization] HeadlessAdminUser.v1.0.deleteUserAccountByEmailAddress
+
+### POST `/headless-admin-user/v1.0/organizations/{organizationId}/user-accounts/by-email-address/{emailAddress}`
+
+[Organization] HeadlessAdminUser.v1.0.postUserAccountByEmailAddress
+
+### GET `/headless-admin-user/v1.0/organizations/{parentOrganizationId}/organizations`
+
+[Organization] HeadlessAdminUser.v1.0.getOrganizationOrganizationsPage
+
+### GET `/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/phones`
+
+[Phone] HeadlessAdminUser.v1.0.getAccountByExternalReferenceCodePhonesPage
+
+### GET `/headless-admin-user/v1.0/accounts/{accountId}/phones`
+
+[Phone] HeadlessAdminUser.v1.0.getAccountPhonesPage
+
+### POST `/headless-admin-user/v1.0/accounts/{accountId}/phones/export-batch`
+
+[Phone] HeadlessAdminUser.v1.0.postAccountPhonesPageExportBatch
+
+### GET `/headless-admin-user/v1.0/organizations/by-external-reference-code/{externalReferenceCode}/phones`
+
+[Phone] HeadlessAdminUser.v1.0.getOrganizationByExternalReferenceCodePhonesPage
+
+### GET `/headless-admin-user/v1.0/organizations/{organizationId}/phones`
+
+[Phone] HeadlessAdminUser.v1.0.getOrganizationPhonesPage

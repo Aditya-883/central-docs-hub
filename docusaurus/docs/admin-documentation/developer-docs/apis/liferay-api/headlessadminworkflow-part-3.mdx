@@ -1,0 +1,70 @@
+---
+id: "headlessadminworkflow-part-3"
+title: "HeadlessAdminWorkflow (Part 3 of 4)"
+sidebar_position: 60
+description: "Mock API reference."
+---
+
+Continuation of [headlessadminworkflow](./headlessadminworkflow.mdx) (Part 3 of 4 — 15 endpoints).
+
+## Endpoints
+
+### POST `/headless-admin-workflow/v1.0/workflow-instances/{workflowInstanceId}/change-transition`
+
+[WorkflowInstance] HeadlessAdminWorkflow.v1.0.postWorkflowInstanceChangeTransition
+
+### GET `/headless-admin-workflow/v1.0/workflow-instances/{workflowInstanceId}/workflow-logs`
+
+[WorkflowLog] HeadlessAdminWorkflow.v1.0.getWorkflowInstanceWorkflowLogsPage
+
+### POST `/headless-admin-workflow/v1.0/workflow-instances/{workflowInstanceId}/workflow-logs/export-batch`
+
+[WorkflowLog] HeadlessAdminWorkflow.v1.0.postWorkflowInstanceWorkflowLogsPageExportBatch
+
+### GET `/headless-admin-workflow/v1.0/workflow-logs/{workflowLogId}`
+
+[WorkflowLog] HeadlessAdminWorkflow.v1.0.getWorkflowLog
+
+### GET `/headless-admin-workflow/v1.0/workflow-tasks/{workflowTaskId}/workflow-logs`
+
+[WorkflowLog] HeadlessAdminWorkflow.v1.0.getWorkflowTaskWorkflowLogsPage
+
+### POST `/headless-admin-workflow/v1.0/workflow-tasks/{workflowTaskId}/workflow-logs/export-batch`
+
+[WorkflowLog] HeadlessAdminWorkflow.v1.0.postWorkflowTaskWorkflowLogsPageExportBatch
+
+### GET `/headless-admin-workflow/v1.0/workflow-instances/{workflowInstanceId}/workflow-tasks`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.getWorkflowInstanceWorkflowTasksPage
+
+### GET `/headless-admin-workflow/v1.0/workflow-instances/{workflowInstanceId}/workflow-tasks/assigned-to-me`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.getWorkflowInstanceWorkflowTasksAssignedToMePage
+
+### GET `/headless-admin-workflow/v1.0/workflow-instances/{workflowInstanceId}/workflow-tasks/assigned-to-user`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.getWorkflowInstanceWorkflowTasksAssignedToUserPage
+
+### POST `/headless-admin-workflow/v1.0/workflow-instances/{workflowInstanceId}/workflow-tasks/export-batch`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.postWorkflowInstanceWorkflowTasksPageExportBatch
+
+### POST `/headless-admin-workflow/v1.0/workflow-tasks`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.postWorkflowTasksPage
+
+### PATCH `/headless-admin-workflow/v1.0/workflow-tasks/assign-to-user`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.patchWorkflowTaskAssignToUser
+
+### GET `/headless-admin-workflow/v1.0/workflow-tasks/assigned-to-me`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.getWorkflowTasksAssignedToMePage
+
+### GET `/headless-admin-workflow/v1.0/workflow-tasks/assigned-to-my-roles`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.getWorkflowTasksAssignedToMyRolesPage
+
+### GET `/headless-admin-workflow/v1.0/workflow-tasks/assigned-to-role`
+
+[WorkflowTask] HeadlessAdminWorkflow.v1.0.getWorkflowTasksAssignedToRolePage

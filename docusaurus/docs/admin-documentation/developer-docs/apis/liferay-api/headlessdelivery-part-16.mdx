@@ -1,0 +1,70 @@
+---
+id: "headlessdelivery-part-16"
+title: "HeadlessDelivery (Part 16 of 34)"
+sidebar_position: 167
+description: "Mock API reference."
+---
+
+Continuation of [headlessdelivery](./headlessdelivery.mdx) (Part 16 of 34 — 15 endpoints).
+
+## Endpoints
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.getSiteKnowledgeBaseArticlesPage
+
+### POST `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.postSiteKnowledgeBaseArticle
+
+### POST `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/batch`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.postSiteKnowledgeBaseArticleBatch
+
+### DELETE `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/by-external-reference-code/{externalReferenceCode}`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.deleteSiteKnowledgeBaseArticleByExternalReferenceCode
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/by-external-reference-code/{externalReferenceCode}`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.getSiteKnowledgeBaseArticleByExternalReferenceCode
+
+### PUT `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/by-external-reference-code/{externalReferenceCode}`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.putSiteKnowledgeBaseArticleByExternalReferenceCode
+
+### POST `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/export-batch`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.postSiteKnowledgeBaseArticlesPageExportBatch
+
+### GET `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/permissions`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.getSiteKnowledgeBaseArticlePermissionsPage
+
+### PUT `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/permissions`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.putSiteKnowledgeBaseArticlePermissionsPage
+
+### PUT `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/subscribe`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.putSiteKnowledgeBaseArticleSubscribe
+
+### PUT `/headless-delivery/v1.0/sites/{siteId}/knowledge-base-articles/unsubscribe`
+
+[KnowledgeBaseArticle] HeadlessDelivery.v1.0.putSiteKnowledgeBaseArticleUnsubscribe
+
+### GET `/headless-delivery/v1.0/knowledge-base-articles/{knowledgeBaseArticleId}/knowledge-base-attachments`
+
+[KnowledgeBaseAttachment] HeadlessDelivery.v1.0.getKnowledgeBaseArticleKnowledgeBaseAttachmentsPage
+
+### POST `/headless-delivery/v1.0/knowledge-base-articles/{knowledgeBaseArticleId}/knowledge-base-attachments`
+
+[KnowledgeBaseAttachment] HeadlessDelivery.v1.0.postKnowledgeBaseArticleKnowledgeBaseAttachment
+
+### POST `/headless-delivery/v1.0/knowledge-base-articles/{knowledgeBaseArticleId}/knowledge-base-attachments/batch`
+
+[KnowledgeBaseAttachment] HeadlessDelivery.v1.0.postKnowledgeBaseArticleKnowledgeBaseAttachmentBatch
+
+### POST `/headless-delivery/v1.0/knowledge-base-articles/{knowledgeBaseArticleId}/knowledge-base-attachments/export-batch`
+
+[KnowledgeBaseAttachment] HeadlessDelivery.v1.0.postKnowledgeBaseArticleKnowledgeBaseAttachmentsPageExportBatch

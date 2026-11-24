@@ -1,0 +1,70 @@
+---
+id: "headlessadminuser-part-14"
+title: "HeadlessAdminUser (Part 14 of 20)"
+sidebar_position: 51
+description: "Mock API reference."
+---
+
+Continuation of [headlessadminuser](./headlessadminuser.mdx) (Part 14 of 20 — 15 endpoints).
+
+## Endpoints
+
+### GET `/headless-admin-user/v1.0/sites/{siteId}/user-accounts/{userAccountId}/segments`
+
+[Segment] HeadlessAdminUser.v1.0.getSiteUserAccountSegmentsPage
+
+### GET `/headless-admin-user/v1.0/segments/{segmentId}/user-accounts`
+
+[SegmentUser] HeadlessAdminUser.v1.0.getSegmentUserAccountsPage
+
+### GET `/headless-admin-user/v1.0/my-user-account/sites`
+
+[Site] HeadlessAdminUser.v1.0.getMyUserAccountSitesPage
+
+### GET `/headless-admin-user/v1.0/sites/by-friendly-url-path/{friendlyUrlPath}`
+
+[Site] HeadlessAdminUser.v1.0.getSiteByFriendlyUrlPath
+
+### GET `/headless-admin-user/v1.0/sites/{siteId}`
+
+[Site] HeadlessAdminUser.v1.0.getSite
+
+### GET `/headless-admin-user/v1.0/my-user-account/subscriptions`
+
+[Subscription] HeadlessAdminUser.v1.0.getMyUserAccountSubscriptionsPage
+
+### DELETE `/headless-admin-user/v1.0/my-user-account/subscriptions/{subscriptionId}`
+
+[Subscription] HeadlessAdminUser.v1.0.deleteMyUserAccountSubscription
+
+### GET `/headless-admin-user/v1.0/my-user-account/subscriptions/{subscriptionId}`
+
+[Subscription] HeadlessAdminUser.v1.0.getMyUserAccountSubscription
+
+### GET `/headless-admin-user/v1.0/user-accounts/{userAccountId}/email-verification-ticket`
+
+[Ticket] HeadlessAdminUser.v1.0.getUserAccountEmailVerificationTicket
+
+### GET `/headless-admin-user/v1.0/user-accounts/{userAccountId}/password-reset-ticket`
+
+[Ticket] HeadlessAdminUser.v1.0.getUserAccountPasswordResetTicket
+
+### DELETE `/headless-admin-user/v1.0/accounts/by-external-reference-code/{accountExternalReferenceCode}/user-accounts/by-external-reference-code/{externalReferenceCode}`
+
+[UserAccount] HeadlessAdminUser.v1.0.deleteAccountByExternalReferenceCodeUserAccountByExternalReferenceCode
+
+### GET `/headless-admin-user/v1.0/accounts/by-external-reference-code/{accountExternalReferenceCode}/user-accounts/by-external-reference-code/{externalReferenceCode}`
+
+[UserAccount] HeadlessAdminUser.v1.0.getAccountByExternalReferenceCodeUserAccountByExternalReferenceCode
+
+### POST `/headless-admin-user/v1.0/accounts/by-external-reference-code/{accountExternalReferenceCode}/user-accounts/by-external-reference-code/{externalReferenceCode}`
+
+[UserAccount] HeadlessAdminUser.v1.0.postAccountByExternalReferenceCodeUserAccountByExternalReferenceCode
+
+### GET `/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts`
+
+[UserAccount] HeadlessAdminUser.v1.0.getAccountUserAccountsByExternalReferenceCodePage
+
+### POST `/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts`
+
+[UserAccount] HeadlessAdminUser.v1.0.postAccountUserAccountByExternalReferenceCode

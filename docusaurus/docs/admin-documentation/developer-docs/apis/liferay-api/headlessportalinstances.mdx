@@ -1,0 +1,48 @@
+---
+id: "headlessportalinstances"
+title: "HeadlessPortalInstances"
+sidebar_position: 188
+description: "Mock API reference."
+---
+
+| Property | Value |
+| :--- | :--- |
+| Endpoints | 7 |
+| Base path | `https://platform.nlproducts.net/o` |
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Caller] --> B[API Service] --> C[(Database)]
+```
+
+## Endpoints
+
+### GET `/headless-portal-instances/v1.0/portal-instances`
+
+[PortalInstance] HeadlessPortalInstances.v1.0.getPortalInstancesPage
+
+### POST `/headless-portal-instances/v1.0/portal-instances`
+
+[PortalInstance] HeadlessPortalInstances.v1.0.postPortalInstance
+
+### DELETE `/headless-portal-instances/v1.0/portal-instances/{portalInstanceId}`
+
+[PortalInstance] HeadlessPortalInstances.v1.0.deletePortalInstance
+
+### GET `/headless-portal-instances/v1.0/portal-instances/{portalInstanceId}`
+
+[PortalInstance] HeadlessPortalInstances.v1.0.getPortalInstance
+
+### PATCH `/headless-portal-instances/v1.0/portal-instances/{portalInstanceId}`
+
+[PortalInstance] HeadlessPortalInstances.v1.0.patchPortalInstance
+
+### PUT `/headless-portal-instances/v1.0/portal-instances/{portalInstanceId}/activate`
+
+[PortalInstance] HeadlessPortalInstances.v1.0.putPortalInstanceActivate
+
+### PUT `/headless-portal-instances/v1.0/portal-instances/{portalInstanceId}/deactivate`
+
+[PortalInstance] HeadlessPortalInstances.v1.0.putPortalInstanceDeactivate

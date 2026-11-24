@@ -1,0 +1,40 @@
+---
+id: "headlessusernotification"
+title: "HeadlessUserNotification"
+sidebar_position: 190
+description: "Mock API reference."
+---
+
+| Property | Value |
+| :--- | :--- |
+| Endpoints | 5 |
+| Base path | `https://platform.nlproducts.net/o` |
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Caller] --> B[API Service] --> C[(Database)]
+```
+
+## Endpoints
+
+### GET `/headless-user-notification/v1.0/my-user-notifications`
+
+[UserNotification] HeadlessUserNotification.v1.0.getMyUserNotificationsPage
+
+### GET `/headless-user-notification/v1.0/user-accounts/{userAccountId}/user-notifications`
+
+[UserNotification] HeadlessUserNotification.v1.0.getUserAccountUserNotificationsPage
+
+### GET `/headless-user-notification/v1.0/user-notifications/{userNotificationId}`
+
+[UserNotification] HeadlessUserNotification.v1.0.getUserNotification
+
+### PUT `/headless-user-notification/v1.0/user-notifications/{userNotificationId}/read`
+
+[UserNotification] HeadlessUserNotification.v1.0.putUserNotificationRead
+
+### PUT `/headless-user-notification/v1.0/user-notifications/{userNotificationId}/unread`
+
+[UserNotification] HeadlessUserNotification.v1.0.putUserNotificationUnread
