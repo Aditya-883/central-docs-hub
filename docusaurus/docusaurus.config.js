@@ -11,6 +11,11 @@ const config = {
     v4: true,
   },
 
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   url: 'https://harshh122.github.io',
   baseUrl: '/central-docs-hub/',
 
@@ -30,25 +35,45 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: './sidebars.js',
-          editUrl:
-            'https://github.com/harshh122/central-docs-hub/tree/main/docusaurus/',
-        },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        docs: false, // Disabled so the 3 separate instances below handle routing
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
       }),
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'user',
+        path: 'docs/public', // Change to 'docs/user' if compile_mdx.py outputs there
+        routeBasePath: 'docs/user',
+        editUrl:
+          'https://github.com/harshh122/central-docs-hub/tree/main/docusaurus/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'client',
+        path: 'docs/client',
+        routeBasePath: 'docs/client',
+        editUrl:
+          'https://github.com/harshh122/central-docs-hub/tree/main/docusaurus/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'admin',
+        path: 'docs/admin',
+        routeBasePath: 'docs/admin',
+        editUrl:
+          'https://github.com/harshh122/central-docs-hub/tree/main/docusaurus/',
+      },
     ],
   ],
 
@@ -67,10 +92,19 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            to: '/docs/user',
+            label: 'User Docs',
             position: 'left',
-            label: 'Docs',
+          },
+          {
+            to: '/docs/client',
+            label: 'Client Docs',
+            position: 'left',
+          },
+          {
+            to: '/docs/admin',
+            label: 'Admin Docs',
+            position: 'left',
           },
           {
             href: 'https://github.com/harshh122/central-docs-hub',
@@ -83,11 +117,19 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Portals',
             items: [
               {
-                label: 'Documentation',
-                to: '/docs/public/user-guide/pricing',
+                label: 'User Docs',
+                to: '/docs/user',
+              },
+              {
+                label: 'Client Docs',
+                to: '/docs/client',
+              },
+              {
+                label: 'Admin Docs',
+                to: '/docs/admin',
               },
             ],
           },
