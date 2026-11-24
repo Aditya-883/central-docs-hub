@@ -49,7 +49,7 @@ const config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'user',
-        path: 'docs/public', // Verify if compile_mdx.py outputs to 'docs/public' or 'docs/user-documentation'
+        path: 'docs/govcon360-system-documentation',
         routeBasePath: 'docs/user',
         editUrl:
           'https://github.com/harshh122/central-docs-hub/tree/main/docusaurus/',
