@@ -13,6 +13,10 @@ const config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownImages: 'warn',
+    },
   },
   themes: ['@docusaurus/theme-mermaid'],
 
