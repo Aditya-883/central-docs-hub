@@ -28,11 +28,19 @@ jobs:
       - name: Checkout central-docs-hub
         uses: actions/checkout@v6
 
-      - name: Setup Python
+      - name: Setup Python (with pip cache)
         uses: actions/setup-python@v7
         with:
           python-version: '3.11'
           cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+
+      - name: Setup Node.js (with npm cache)
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'docusaurus/package-lock.json'
 
       - name: Install Tesseract OCR & Python Dependencies
         run: |
@@ -52,24 +60,27 @@ jobs:
           if [ "${{ inputs.force }}" = "true" ]; then EXTRA_FLAGS="$EXTRA_FLAGS --force"; fi
           if [ "${{ inputs.mock }}" = "true" ]; then EXTRA_FLAGS="$EXTRA_FLAGS --mock"; fi
 
+          set +e
           python3 scripts/compile_mdx.py \
             --project-dir . \
             --docs-root ./docusaurus/docs \
             --static-root ./docusaurus/static \
             --manifest ./.sync-manifest.json \
             $EXTRA_FLAGS
+          EXIT_CODE=$?
+          set -e
 
-      - name: Setup Node.js for Build Validation
-        uses: actions/setup-node@v6
-        with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: docusaurus/package-lock.json
+          # Exit 2 = fatal error (missing key/Tesseract/LLM outage) -> abort job
+          # Exit 1 = partial failure -> continue so completed MDX & manifest are saved
+          if [ "$EXIT_CODE" -eq 2 ]; then
+            echo "Fatal compiler error (exit code 2). Aborting."
+            exit 2
+          fi
 
       - name: Validate Docusaurus Build
         working-directory: ./docusaurus
         run: |
-          npm ci
+          npm ci --prefer-offline
           npm run build
 
       - name: Commit & Push Validated MDX to central-docs-hub
@@ -77,7 +88,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docusaurus/docs docusaurus/static .sync-manifest.json
+
+          git add docusaurus/docs docusaurus/static
+          if [ -f .sync-manifest.json ]; then
+            git add .sync-manifest.json
+          fi
 
           if git diff --staged --quiet; then
             echo "No MDX or manifest changes to push."
