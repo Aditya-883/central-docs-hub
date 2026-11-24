@@ -51,8 +51,9 @@ jobs:
       - name: Run Offline Self-Test
         run: python3 scripts/compile_mdx.py --self-test
 
-      - name: Compile JSON to MDX (AI)
+      - name: Compile JSON to MDX (AI - 5 min cap)
         id: compile
+        timeout-minutes: 7
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -61,18 +62,19 @@ jobs:
           if [ "${{ inputs.mock }}" = "true" ]; then EXTRA_FLAGS="$EXTRA_FLAGS --mock"; fi
 
           set +e
-          python3 scripts/compile_mdx.py \
+          timeout -k 10s 5m python3 scripts/compile_mdx.py \
             --project-dir . \
             --docs-root ./docusaurus/docs \
             --static-root ./docusaurus/static \
             --manifest ./.sync-manifest.json \
+            --concurrency 1 \
             $EXTRA_FLAGS
           EXIT_CODE=$?
           set -e
 
-          # Exit 2 = fatal error (missing key/Tesseract/LLM outage) -> abort job
-          # Exit 1 = partial failure -> continue so completed MDX & manifest are saved
-          if [ "$EXIT_CODE" -eq 2 ]; then
+          if [ "$EXIT_CODE" -eq 124 ] || [ "$EXIT_CODE" -eq 137 ]; then
+            echo "5-minute cap reached. Proceeding to validate and push generated MDX."
+          elif [ "$EXIT_CODE" -eq 2 ]; then
             echo "Fatal compiler error (exit code 2). Aborting."
             exit 2
           fi
@@ -82,6 +84,17 @@ jobs:
         run: |
           npm ci --prefer-offline
           npm run build
+
+      - name: Backup Generated MDX & Manifest on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-mdx-backup
+          path: |
+            docusaurus/docs/
+            docusaurus/static/
+            .sync-manifest.json
+          retention-days: 7
 
       - name: Commit & Push Validated MDX to central-docs-hub
         id: push_mdx
