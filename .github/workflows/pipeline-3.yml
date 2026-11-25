@@ -128,10 +128,10 @@ jobs:
       - name: Trigger Pipeline 4 (Docusaurus Deploy)
         if: steps.push_mdx.outputs.changed == 'true'
         env:
-          GH_TOKEN: ${{ secrets.CENTRAL_REPO_PAT }}
+          GH_TOKEN: ${{ secrets.DOCUSAURUS_REPO_PAT }}
         run: |
           if [ -z "$GH_TOKEN" ]; then
-            echo "::error::CENTRAL_REPO_PAT secret is missing. Add it under Settings -> Secrets and variables -> Actions."
+            echo "::error::DOCUSAURUS_REPO_PAT secret is missing. Add it under Settings -> Secrets and variables -> Actions."
             exit 1
           fi
           gh api --method POST repos/harshh122/central-docs-hub/dispatches \
