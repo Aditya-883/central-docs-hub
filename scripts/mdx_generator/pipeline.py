@@ -25,6 +25,7 @@ from .config import (
     IGNORED_DIR_NAMES,
     IMAGE_EXTENSIONS,
     MAX_ENDPOINTS_PER_MDX,
+    MAX_LIFERAY_API_FILES,
     OCR_CONCURRENCY,
     PORTAL_DISPLAY_NAMES,
     PORTAL_SIDEBAR_POSITIONS,
@@ -389,6 +390,7 @@ class DocumentationPipeline:
         self._groups: list[DocGroup] = []
         self._fatal: FatalLLMError | None = None
         self._ocr_sem = asyncio.Semaphore(OCR_CONCURRENCY)
+        self._liferay_api_planned = 0
 
     # ------------------------------------------------------------------ manifest
     def _load_manifest(self) -> dict[str, str]:
@@ -452,13 +454,18 @@ class DocumentationPipeline:
         label: str,
         image: ImageSpec | None = None,
         max_list_items: dict[str, int] | None = None,
+        max_parts: int | None = None,
     ) -> int:
         """Split the payload if it is too big for the model, and queue one job per part.
 
         Returns how many sidebar positions the document used (1 + extra parts).
         """
         chunks = split_payload(payload, CHUNK_TOKEN_BUDGET, max_list_items=max_list_items)
+        if max_parts is not None and max_parts >= 0 and len(chunks) > max_parts:
+            chunks = chunks[:max_parts]
         total = len(chunks)
+        if total == 0:
+            return 0
         group = DocGroup(base_key=key, target_dir=target_dir, slug=slug, total=total)
         self._groups.append(group)
         image_sig = image.signature() if image else ""
@@ -784,6 +791,13 @@ class DocumentationPipeline:
 
     # ---------------------------------------------------------------- Backend API (Subset of Admin)
     def process_backend_api_json(self, json_path: Path, api_source: str, portal: str | None = None) -> None:
+        if api_source == "liferay-api" and MAX_LIFERAY_API_FILES and self._liferay_api_planned >= MAX_LIFERAY_API_FILES:
+            logger.info(
+                "Skipping %s: already reached MAX_LIFERAY_API_FILES (%d).",
+                json_path.name, MAX_LIFERAY_API_FILES,
+            )
+            return
+
         raw = load_and_check_json_file(json_path)
         if not isinstance(raw, dict):
             raise ValueError(f"{json_path} must contain a JSON object.")
@@ -811,6 +825,17 @@ class DocumentationPipeline:
         for tag, endpoints in grouped.items():
             if self._limit_reached():
                 return
+            max_parts: int | None = None
+            if bundle.api_source == "liferay-api" and MAX_LIFERAY_API_FILES:
+                remaining = MAX_LIFERAY_API_FILES - self._liferay_api_planned
+                if remaining <= 0:
+                    logger.info(
+                        "Reached MAX_LIFERAY_API_FILES (%d) in %s; stopping Liferay API generation and continuing with the rest of the pipeline.",
+                        MAX_LIFERAY_API_FILES, json_path.name,
+                    )
+                    return
+                max_parts = remaining
+
             slug = slugify(tag)
             payload = {
                 "service_name": bundle.service_name,
@@ -820,7 +845,7 @@ class DocumentationPipeline:
                 "endpoints": [e.model_dump() for e in endpoints],
             }
             # Up to MAX_ENDPOINTS_PER_MDX endpoints per file AND within the token budget; extra files are "-part-N".
-            position += self._plan_document(
+            used = self._plan_document(
                 key=f"api::{bundle.api_source}::{slug}",
                 target_dir=sub_dir,
                 slug=slug,
@@ -830,7 +855,11 @@ class DocumentationPipeline:
                 doc_kind="liferay_api" if bundle.api_source == "liferay-api" else "springboot_api",
                 label=f"api/{bundle.api_source}/{tag} ({json_path.name})",
                 max_list_items={"endpoints": MAX_ENDPOINTS_PER_MDX},
+                max_parts=max_parts,
             )
+            position += used
+            if bundle.api_source == "liferay-api":
+                self._liferay_api_planned += used
 
     # ---------------------------------------------------------------- Full Project
     def process_project_dir(self, project_dir: Path, portal_filter: str | None = None) -> None:

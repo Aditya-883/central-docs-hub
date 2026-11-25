@@ -19,6 +19,7 @@ except ImportError:
 
 from .config import (
     DEFAULT_MODEL,
+    FALLBACK_MODEL,
     FatalLLMError,
     GEMINI_CONCURRENCY,
     LLM_TIMEOUT_SECONDS,
@@ -65,7 +66,7 @@ def build_mock_mdx(
             ]
         else:
             lines += [
-                ":::warning INTERNAL",
+                ":::warning[INTERNAL]",
                 "Internal engineering documentation.",
                 ":::", "",
                 "## System overview", "",
@@ -150,6 +151,23 @@ def _classify_error(exc: Exception) -> str:
     return "retry"                          # 429, 5xx, timeouts, network errors
 
 
+def _is_rate_or_overload(exc: Exception) -> bool:
+    code = getattr(exc, "code", None)
+    msg = str(exc).lower()
+    return code in (429, 503) or "503" in msg or "unavailable" in msg or "high demand" in msg or "resource_exhausted" in msg
+
+
+def _build_gen_config(system_instruction: str, model_name: str) -> Any:
+    """Build GenerateContentConfig, keeping thinking low on Gemini 4 models for fast MDX generation."""
+    kwargs: dict[str, Any] = {"system_instruction": system_instruction, "temperature": 0.1}
+    if model_name.startswith("gemini-4-") and hasattr(types, "ThinkingConfig"):
+        try:
+            kwargs["thinking_config"] = types.ThinkingConfig(thinking_level="low")
+        except Exception:
+            pass
+    return types.GenerateContentConfig(**kwargs)
+
+
 class _Spacer:
     """Makes every Gemini request START at least `interval` seconds after the previous one (all tasks share it)."""
 
@@ -167,14 +185,15 @@ class _Spacer:
             await asyncio.sleep(start - now)
 
     def pause(self, seconds: float) -> None:
-        """After a rate-limit error, hold back every task for a while."""
+        """After a rate-limit or 503 overload error, hold back every task for a while."""
         self._next = max(self._next, time.monotonic() + seconds)
 
 
 class GeminiMdxCompiler:
     def __init__(self, api_key: str | None = None, model_name: str = DEFAULT_MODEL, mock_mode: bool = False,
-                 concurrency: int = GEMINI_CONCURRENCY) -> None:
+                 concurrency: int = GEMINI_CONCURRENCY, fallback_model: str = FALLBACK_MODEL) -> None:
         self.model_name = model_name
+        self.fallback_model = fallback_model.strip() if fallback_model else ""
         self.mock_mode = mock_mode
         self.api_key = api_key or os.getenv("GEMINI_API_KEY", "")
         self.token_stats = {"total_calls": 0, "prompt_tokens": 0, "completion_tokens": 0,
@@ -212,14 +231,25 @@ class GeminiMdxCompiler:
             contents = [types.Part.from_bytes(data=image_path.read_bytes(), mime_type=mime), user_prompt]
 
         last_err: Exception | None = None
+        saw_overload = False
         for attempt in range(1, MAX_LLM_ATTEMPTS + 1):
+            use_fallback = (
+                attempt == MAX_LLM_ATTEMPTS
+                and saw_overload
+                and self.fallback_model
+                and self.fallback_model != self.model_name
+            )
+            active_model = self.fallback_model if use_fallback else self.model_name
+            if use_fallback:
+                logger.info("Primary model '%s' overloaded; trying fallback '%s' on attempt %d/%d.",
+                            self.model_name, active_model, attempt, MAX_LLM_ATTEMPTS)
             try:
                 async with self._sem:                    # at most N requests at the same time
                     await self._spacer.wait()            # and never faster than the interval
                     response = await self.client.aio.models.generate_content(
-                        model=self.model_name,
+                        model=active_model,
                         contents=contents,
-                        config=types.GenerateContentConfig(system_instruction=system_instruction, temperature=0.1),
+                        config=_build_gen_config(system_instruction, active_model),
                     )
             except asyncio.CancelledError:
                 raise
@@ -227,16 +257,27 @@ class GeminiMdxCompiler:
                 self.token_stats["failed_attempts"] += 1
                 kind = _classify_error(exc)
                 if kind == "fatal":
+                    # Never abort the whole run just because the optional fallback model wasn't found/allowed
+                    if use_fallback:
+                        last_err = exc
+                        logger.warning("Fallback model '%s' unavailable (%s).", active_model, str(exc)[:120])
+                        continue
                     raise FatalLLMError(f"Gemini rejected the request (HTTP {getattr(exc, 'code', '?')}): {str(exc)[:300]}") from exc
                 if kind == "file":
                     raise RequestRejectedError(f"Gemini rejected this request: {str(exc)[:300]}") from exc
                 last_err = exc
-                wait = 20 * attempt if getattr(exc, "code", None) == 429 else 2 ** attempt
-                if getattr(exc, "code", None) == 429:
-                    self._spacer.pause(wait)             # slow every task down, not just this one
-                logger.warning("Gemini attempt %d/%d failed (%s). Retrying in %ds.", attempt, MAX_LLM_ATTEMPTS, str(exc)[:120], wait)
+                overloaded = _is_rate_or_overload(exc)
+                if overloaded:
+                    saw_overload = True
+                # 10s after attempt 1, 20s after attempt 2 (max 30s total wait per file on 3 attempts)
+                wait = (10 * attempt) if overloaded else (2 ** attempt)
+                if overloaded and attempt < MAX_LLM_ATTEMPTS:
+                    self._spacer.pause(wait)
                 if attempt < MAX_LLM_ATTEMPTS:
+                    logger.warning("Gemini attempt %d/%d failed (%s). Retrying in %ds.", attempt, MAX_LLM_ATTEMPTS, str(exc)[:120], wait)
                     await asyncio.sleep(wait + random.uniform(0, 1))
+                else:
+                    logger.warning("Gemini attempt %d/%d failed (%s).", attempt, MAX_LLM_ATTEMPTS, str(exc)[:120])
                 continue
 
             self.token_stats["total_calls"] += 1

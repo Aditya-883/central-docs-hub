@@ -38,17 +38,22 @@ PORTAL_SIDEBAR_POSITIONS: dict[str, int] = {
 DEFAULT_FRONTEND_PORTAL = "public"
 DEFAULT_API_PORTAL = "admin"
 DEFAULT_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
+# Automatic fallback model used on the final retry if the primary model keeps returning 503/429.
+# Set GEMINI_FALLBACK_MODEL="" in .env to disable fallback.
+FALLBACK_MODEL = os.getenv("GEMINI_FALLBACK_MODEL", "gemini-4-hydrogen").strip()
 
 MAX_LLM_ATTEMPTS = 3
 LLM_TIMEOUT_SECONDS = 120.0
 MIN_SECONDS_BETWEEN_CALLS = float(os.getenv("GEMINI_MIN_INTERVAL", "7"))
 MAX_ENDPOINTS_PER_MDX = 15
+# Cap Liferay API MDX files per run during pipeline testing (0 = unlimited).
+# Set MAX_LIFERAY_API_FILES=0 in env when ready for full production runs.
+MAX_LIFERAY_API_FILES = max(0, int(os.getenv("MAX_LIFERAY_API_FILES", "15")))
 PROMPT_VERSION = 12
 
 # --- Concurrency and chunking ---------------------------------------------------------------
-# Gemini calls running at the same time. Calls still START at least GEMINI_MIN_INTERVAL seconds
-# apart (shared by all tasks), so raising this only helps when a call takes longer than that.
-GEMINI_CONCURRENCY = max(1, int(os.getenv("GEMINI_CONCURRENCY", "3")))
+# Gemini calls running at the same time (2 is safer than 3 on Free-tier keys to avoid simultaneous 503s).
+GEMINI_CONCURRENCY = max(1, int(os.getenv("GEMINI_CONCURRENCY", "2")))
 # Screenshots blurred at the same time (Tesseract is CPU heavy).
 OCR_CONCURRENCY = max(1, int(os.getenv("OCR_CONCURRENCY", "2")))
 # Context window of the model, and how many tokens of JSON ONE chunk may use. The chunk budget is
