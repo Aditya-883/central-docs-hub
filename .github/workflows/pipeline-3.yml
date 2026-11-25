@@ -58,9 +58,8 @@ jobs:
             --static-root /tmp/test-static \
             --manifest /tmp/test-manifest.json
 
-      - name: Compile JSON to MDX (AI - 5 min cap)
+      - name: Compile JSON to MDX (AI - Full Run)
         id: compile
-        timeout-minutes: 7
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -69,7 +68,7 @@ jobs:
           if [ "${{ inputs.mock }}" = "true" ]; then EXTRA_FLAGS="$EXTRA_FLAGS --mock"; fi
 
           set +e
-          timeout -k 10s 5m python3 scripts/compile_mdx.py \
+          python3 scripts/compile_mdx.py \
             --project-dir . \
             --docs-root ./docusaurus/docs \
             --static-root ./docusaurus/static \
@@ -83,8 +82,6 @@ jobs:
             echo "Compilation completed cleanly."
           elif [ "$EXIT_CODE" -eq 1 ]; then
             echo "Partial failures occurred. Proceeding to validate and push generated MDX."
-          elif [ "$EXIT_CODE" -eq 124 ] || [ "$EXIT_CODE" -eq 137 ]; then
-            echo "5-minute cap reached. Proceeding to validate and push generated MDX."
           else
             echo "Fatal compiler error (exit code $EXIT_CODE). Aborting."
             exit "$EXIT_CODE"
@@ -130,9 +127,12 @@ jobs:
 
       - name: Trigger Pipeline 4 (Docusaurus Deploy)
         if: steps.push_mdx.outputs.changed == 'true'
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.CENTRAL_REPO_PAT }}
-          repository: harshh122/central-docs-hub
-          event-type: mdx-updated
-          client-payload: '{"source": "pipeline-3"}'
+        env:
+          GH_TOKEN: ${{ secrets.CENTRAL_REPO_PAT }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::CENTRAL_REPO_PAT secret is missing. Add it under Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+          gh api --method POST repos/harshh122/central-docs-hub/dispatches \
+            --input - <<< '{"event_type":"mdx-updated","client_payload":{"source":"pipeline-3"}}'
